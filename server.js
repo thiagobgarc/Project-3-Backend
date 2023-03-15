@@ -48,7 +48,7 @@ app.use('/sessions', sessionsController)
 ////////////////////////////////
 // create a test route
 app.get("/", (req,res) => {
-    res.send("hello world")
+    res.send("hello world!")
 })
 
 ///////////////////////////////
