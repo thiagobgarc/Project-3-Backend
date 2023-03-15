@@ -14,6 +14,10 @@ const mongoose = require("mongoose")
 // import middleware
 const cors = require("cors")
 const morgan = require("morgan")
+// import bcrypt -- FOR LOGIN/USERS
+const bcrypt = require('bcrypt')
+// Controllers
+const sessionsController = require('./controllers/sessions') 
 
 ///////////////////////////////
 // DATABASE CONNECTION
@@ -33,6 +37,11 @@ const morgan = require("morgan")
 app.use(cors())
 app.use(morgan("dev"))
 app.use(express.json())
+
+///////////////////////////////
+// Controllers Middleware
+////////////////////////////////
+app.use('/sessions', sessionsController)
 
 ///////////////////////////////
 // ROUTES
