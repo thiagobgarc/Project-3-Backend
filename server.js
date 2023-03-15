@@ -55,6 +55,20 @@ const ApartmentSchema = new mongoose.Schema({
   }, { timestamps: true })
   const Apartment = mongoose.model("Apartment", ApartmentSchema)
 
+
+ // Roommate Schema
+  const roommateSchema = new mongoose.Schema({
+    Name: String,
+    age: Number,
+    gender: String,
+    housingStyleWanted: String,
+    smoker: Boolean,
+    earlyRiser: Boolean,
+    major: String,
+    interests: String,
+  })
+const Roommate = mongoose.model("Roommate", roommateSchema)
+
 ///////////////////////////////
 // MIDDLEWARE
 ////////////////////////////////
@@ -72,11 +86,7 @@ app.use('/sessions', sessionsController)
 ////////////////////////////////
 // create a test route
 app.get("/", (req,res) => {
-<<<<<<< HEAD
-    res.send("hello roomies")
-=======
     res.send("hello world!")
->>>>>>> 25f7046a1c6c4bbc380f84862930d61e0d0c8002
 })
 
 ///////////////////////////////
