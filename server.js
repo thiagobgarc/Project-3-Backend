@@ -35,7 +35,10 @@ const sessionsController = require('./controllers/sessions')
 // MODELS
 ///////////////////////////////
 const ApartmentSchema = new mongoose.Schema({
-    share: Boolean,
+    userName: String,
+    post: Boolean,
+    lookFor: Boolean,
+    shareRoom: Boolean,
     bedroom: Number,
     bathroom: Number,
     kitchen: Boolean,
@@ -69,7 +72,11 @@ app.use('/sessions', sessionsController)
 ////////////////////////////////
 // create a test route
 app.get("/", (req,res) => {
+<<<<<<< HEAD
     res.send("hello roomies")
+=======
+    res.send("hello world!")
+>>>>>>> 25f7046a1c6c4bbc380f84862930d61e0d0c8002
 })
 
 ///////////////////////////////
