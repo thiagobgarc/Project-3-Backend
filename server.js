@@ -28,6 +28,27 @@ const morgan = require("morgan")
 //   .on("error", (error) => console.log(error))
 
 ///////////////////////////////
+// MODELS
+///////////////////////////////
+const ApartmentSchema = new mongoose.Schema({
+    share: Boolean,
+    bedroom: Number,
+    bathroom: Number,
+    kitchen: Boolean,
+    priceRange: [{
+        lowest: Number,
+        highest: Number
+    }],
+    date: [{
+        start: Date,
+        end : Date
+    }],
+    location: String,
+    note: String
+  }, { timestamps: true })
+  const Apartment = mongoose.model("Apartment", ApartmentSchema)
+
+///////////////////////////////
 // MIDDLEWARE
 ////////////////////////////////
 app.use(cors())
@@ -39,7 +60,7 @@ app.use(express.json())
 ////////////////////////////////
 // create a test route
 app.get("/", (req,res) => {
-    res.send("hello world")
+    res.send("hello roomies")
 })
 
 ///////////////////////////////
