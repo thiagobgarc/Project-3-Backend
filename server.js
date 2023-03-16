@@ -17,7 +17,7 @@ const morgan = require("morgan")
 // import bcrypt -- FOR LOGIN/USERS
 const bcrypt = require('bcrypt')
 // Controllers
-const sessionsController = require('./controllers/sessions') 
+// const sessionsController = require('./controllers/sessions') 
 
 ///////////////////////////////
 // DATABASE CONNECTION
@@ -169,7 +169,7 @@ app.use(express.json())
 ///////////////////////////////
 // Controllers Middleware
 ////////////////////////////////
-app.use('/sessions', sessionsController)
+// app.use('/sessions', sessionsController)
 
 ///////////////////////////////
 // ROUTES
