@@ -116,7 +116,7 @@ const Appartments =
         lookFor: false,
         shareRoom: false,
         bedroom: 1,
-        bathroom: Numb1er,
+        bathroom: 1,
         kitchen: false,
         priceRange: [{
             lowest: 800,
@@ -171,7 +171,7 @@ const Appartments =
         lookFor: false,
         shareRoom: false,
         bedroom: 1,
-        bathroom: Numb1er,
+        bathroom: 1,
         kitchen: false,
         priceRange: [{
             lowest: 800,
@@ -244,7 +244,7 @@ const Appartments =
         lookFor: false,
         shareRoom: true,
         bedroom: 1,
-        bathroom: Numb1er,
+        bathroom: 1,
         kitchen: false,
         priceRange: [{
             lowest: 600,
