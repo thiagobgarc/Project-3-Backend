@@ -49,7 +49,7 @@ const ApartmentSchema = new mongoose.Schema({
     location: String,
     note: String
   }, { timestamps: true })
-  const Apartment = mongoose.model("Apartment", ApartmentSchema)
+  const Apartments = mongoose.model("Apartments", ApartmentSchema)
 
 
  // Roommate Schema
@@ -71,8 +71,7 @@ const Roommate = mongoose.model("Roommate", roommateSchema)
 // SEED DATA
 //////////////////////////////
 // Apartment Seed
-const Appartments =
-    [
+Apartments.create([
       {
         userName: 'aalexander',
         post: true,
@@ -348,8 +347,7 @@ const Appartments =
         location: 'MIT',
         note: ''
       }
-    ]
-    module.exports = Apartments
+    ])
 
 // Roommate Seed
 Roommate.create ([
