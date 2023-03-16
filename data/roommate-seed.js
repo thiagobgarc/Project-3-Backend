@@ -1,6 +1,4 @@
-import Roommate from '../server'
-
-let roommateSeed = Roommate.create ([
+const roommateSeed = [
    {
       name: 'John Doe',
       age: 19,
@@ -81,6 +79,6 @@ let roommateSeed = Roommate.create ([
       major: 'mathematics',
       interests: ['movies', 'baking', 'dancing'],
    }
-]) 
+] 
 
 module.exports = roommateSeed

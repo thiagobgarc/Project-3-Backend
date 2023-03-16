@@ -1,4 +1,4 @@
-const Appartments =
+const ApartmentSeed =
     [
       {
         userName: 'aalexander',
@@ -275,5 +275,6 @@ const Appartments =
         location: 'MIT',
         note: ''
       }
-    ]
-    module.exports = Apartments
+]
+//Make this exportable to be accessed in server.js
+module.exports = ApartmentSeed
