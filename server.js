@@ -70,6 +70,50 @@ app.get("/", (req,res) => {
     res.send("hello world!")
 })
 
+// GET - A LIST OF ALL AVAILABLE APARTMENTS
+app.get('/postapps', async(req, res) =>{
+  try{
+    res.json(await Apartment.find({post:true}))
+    
+  }catch {
+    // send error
+    res.status(400).json(error)
+  }
+})
+// GET - A LIST OF ALL WANTED APARTMENTS
+app.get('/requestapps', async(req, res) =>{
+  try{
+    res.json(await Apartment.find({post:false}))
+  }catch {
+    // send error
+    res.status(400).json(error)
+  }
+})
+// GET - APARTMENT SHOW
+app.get('/apartment/:id', async (req, res) => {
+  try {
+    res.json(await Apartment.findById(req.params.id))
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+//GET - A LIST OF ALL ROOMMATES 
+app.get('/roommate', async(req, res) =>{
+  try{
+    res.json(await Roommate.find({}))
+  }catch {
+    // send error
+    res.status(400).json(error)
+  }
+})
+// GET - ROOMMATE SHOW
+app.get('/roommate/:id', async (req, res) => {
+  try {
+    res.json(await Roommate.findById(req.params.id))
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
 ///////////////////////////////
 // LISTENER
 ////////////////////////////////
