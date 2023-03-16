@@ -14,10 +14,6 @@ const mongoose = require("mongoose")
 // import middleware
 const cors = require("cors")
 const morgan = require("morgan")
-// import bcrypt -- FOR LOGIN/USERS
-const bcrypt = require('bcrypt')
-// Controllers
-// const sessionsController = require('./controllers/sessions') 
 
 ///////////////////////////////
 // DATABASE CONNECTION
