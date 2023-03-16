@@ -442,6 +442,28 @@ Roommate.create ([
     seekingRoom: true
   }
 ]) 
+
+///////////////////////////////////////////////
+// LOGIN/USERS SCHEMA
+// DECLARED VARIABLE USER TO MONGOOSE
+const userSchema = new mongoose.Schema({
+  // USERNAME-STRING-REQUIRED
+    username: 
+    {
+      type: String, 
+      required: true
+    },
+    // PASSWORD-STRING-REQUIRED
+    Password: 
+    {
+      type: String,
+      required: true
+    }
+  })
+  // MONGOOSE MODEL
+  const User = mongoose.model("Roommate", userSchema)
+  ////////////////////////////////////////////////
+
 ///////////////////////////////
 // MIDDLEWARE
 ////////////////////////////////
@@ -461,6 +483,40 @@ app.use(express.json())
 app.get("/", (req,res) => {
     res.send("hello world!")
 })
+
+//////////////////////////////////////
+// LOGIN & SIGNUP ROUTES
+//////////////////////////////////////
+app.get("/login", async (req,res) => {
+  try{
+    // GET LOGIN PAGE
+    res.json(await User.find({}))
+  } catch {
+    // SEND ERROR
+    res.status(400).json(error)
+  }
+})
+
+app.get("/login/:id", async (req,res) => {
+  try {
+    // LOGIN USER 
+    res.json(await User.findById(req.params.id))
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+
+app.post("/registration", async (req,res) => {
+  try{
+    // CREATE USER
+    res.json(await User.create(req.body))
+  } catch {
+    // SEND ERROR
+    res.status(400).json(error)
+  }
+})
+//////////////////////////////////////
+//////////////////////////////////////
 
 ///////////////////////////////
 // LISTENER
