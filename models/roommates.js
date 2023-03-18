@@ -6,12 +6,11 @@ const roommateSchema = new mongoose.Schema({
     name: String,
     age: Number,
     gender: String,
-    smoker: Boolean,
-    earlyRiser: Boolean,
     major: String,
     interests: Array,
-    seekingRoommate: Boolean,
-    seekingRoom: Boolean,
+    smoker: Boolean,
+    morningOrNight: String,
+    roommateOrRoom: String
   }, { timestamps: true })
  
  const Roommate = mongoose.model("Roommate", roommateSchema)

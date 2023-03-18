@@ -82,7 +82,6 @@ app.get("/login", async (req,res) => {
     res.status(400).json(error)
   }
 })
-
 app.get("/login/:id", async (req,res) => {
   try {
     // LOGIN USER 
@@ -91,7 +90,6 @@ app.get("/login/:id", async (req,res) => {
     // send error
     res.status(400).json(error)
   }
-
 })
 
 app.post("/registration", async (req,res) => {
@@ -109,17 +107,21 @@ app.post("/registration", async (req,res) => {
 // GET - A LIST OF ALL AVAILABLE APARTMENTS
 app.get('/postapps', async(req, res) =>{
   try{
-    res.json(await Apartment.find({post:true}))
-    
-  }catch {
-    // send error
+    // CREATE USER
+    res.json(await User.create(req.body))
+  } catch {
+    // SEND ERROR
     res.status(400).json(error)
   }
 })
-// GET - A LIST OF ALL WANTED APARTMENTS
-app.get('/requestapps', async(req, res) =>{
+//////////////////////////////////
+// ALL ROUTES FOR FINDING A ROOM
+/////////////////////////////////
+
+// GET - A LIST OF ALL AVAILABLE APARTMENTS
+app.get('/postapts', async(req, res) =>{
   try{
-    res.json(await Apartment.find({post:false}))
+    res.json(await Apartment.find({post:true}))
   }catch {
     // send error
     res.status(400).json(error)
@@ -133,7 +135,46 @@ app.get('/apartment/:id', async (req, res) => {
     res.status(400).json(error)
   }
 })
-
+//////////////////////////////////
+// ALL ROUTES FOR POSTING A ROOM
+/////////////////////////////////
+// GET - A LIST OF ALL WANTED APARTMENTS
+app.get('/requestapts', async(req, res) =>{
+  try{
+    res.json(await Apartment.find({post:false}))
+  }catch {
+    // send error
+    res.status(400).json(error)
+  }
+})
+// POST - APARTMENT CREATE ROUTE
+app.post('/apartment', async (req, res) => {
+  try {
+    res.json(await Apartment.create(req.body))
+  } catch (error){
+    // send error
+    res.status(400).json(error)
+  }
+})
+// PUT - APARTMENT UPDATE ROUTE
+app.put("/apartment/:id", async (req, res) => {
+  try {
+    res.json(await People.findByIdAndUpdate(req.params.id, req.body, {new: true}))
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+// DELETE - APARTMENT DELETE ROUTE
+app.delete('/apartment/:id', async (req, res) => {
+  try {
+    res.json(await People.findByIdAndRemove(req.params.id))
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+//////////////////////////////////////
+// ALL ROUTES FOR ROOMMATES
+//////////////////////////////////////
 //GET - A LIST OF ALL ROOMMATES 
 app.get('/roommate', async(req, res) =>{
   try{
@@ -147,6 +188,22 @@ app.get('/roommate', async(req, res) =>{
 app.get('/roommate/:id', async (req, res) => {
   try {
     res.json(await Roommate.findById(req.params.id))
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+// PUT - ROOMMATE UPDATE ROUTE
+app.put("/roommate/:id", async (req, res) => {
+  try {
+    res.json(await Roommate.findByIdAndUpdate(req.params.id, req.body, {new: true}))
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+// DELETE - ROOMMATE DELETE ROUTE
+app.delete('/roommate/:id', async (req, res) => {
+  try {
+    res.json(await Roommate.findByIdAndRemove(req.params.id))
   } catch (error) {
     res.status(400).json(error)
   }
