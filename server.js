@@ -93,6 +93,19 @@ app.get("/login/:id", async (req,res) => {
   }
 
 })
+
+app.post("/registration", async (req,res) => {
+  try{
+    // CREATE USER
+    res.json(await User.create(req.body))
+  } catch {
+    // SEND ERROR
+    res.status(400).json(error)
+  }
+})
+//////////////////////////////////////
+//////////////////////////////////////
+
 // GET - A LIST OF ALL AVAILABLE APARTMENTS
 app.get('/postapps', async(req, res) =>{
   try{
@@ -120,18 +133,6 @@ app.get('/apartment/:id', async (req, res) => {
     res.status(400).json(error)
   }
 })
-
-app.post("/registration", async (req,res) => {
-  try{
-    // CREATE USER
-    res.json(await User.create(req.body))
-  } catch {
-    // SEND ERROR
-    res.status(400).json(error)
-  }
-})
-//////////////////////////////////////
-//////////////////////////////////////
 
 //GET - A LIST OF ALL ROOMMATES 
 app.get('/roommate', async(req, res) =>{
