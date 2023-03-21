@@ -4,275 +4,215 @@ const ApartmentSeed =
         userName: 'aalexander',
         post: true,
         lookFor: false,
-        shareRoom: false,
-        bedroom: 1,
-        bathroom: 1,
-        kitchen: false,
-        priceRange: [{
-            lowest: 800,
-            highest: 1000
-        }],
-        date: [{
-            start: '05/15/2023',
-            end : '07/15/2023'
-        }],
         location: 'University of Connecticut',
+        housingType: 'Apartment',
+        roomType: 'Individual',
+        bathroomType: 'Individual',
+        kitchen: false,
+        age: 18,
+        priceRange: [ 800,1000],
+        date: ['05/15/2023','07/15/2023'],
+        image: '',
         note: ''
       }, {
         userName: 'lheffer',
         post: true,
         lookFor: false,
-        shareRoom: true,
-        bedroom: 2,
-        bathroom: 2,
-        kitchen: true,
-        priceRange: [{
-            lowest: 1500,
-            highest: 1700
-        }],
-        date: [{
-            start: '05/01/2023',
-            end : '08/15/2023'
-        }],
         location: 'University of Pennsylvania',
+        housingType: 'Apartment',
+        roomType: 'Individual',
+        bathroomType: 'Shared',
+        kitchen: true,
+        age: 19,
+        priceRange: [1500,1700],
+        date: ['05/01/2023','08/15/2023'],
+        image: '',
         note: ''
       }, {
         userName: 'mPribanic',
         post: false,
         lookFor: false,
-        shareRoom: false,
-        bedroom: 1,
-        bathroom: 1,
-        kitchen: false,
-        priceRange: [{
-            lowest: 700,
-            highest: 9000
-        }],
-        date: [{
-            start: '05/15/2023',
-            end : '07/15/2023'
-        }],
         location: 'University of Boston',
+        housingType: 'Apartment',
+        roomType: 'Shared',
+        bathroomType: 'Individual',
+        kitchen: false,
+        age: 18,
+        priceRange: [700,9000],
+        date: ['05/15/2023','07/15/2023'],
+        image: '',
         note: 'lower price please'
       },
       {
         userName: 'jjackson',
         post: false,
         lookFor: false,
-        shareRoom: true,
-        bedroom: 1,
-        bathroom: 1,
-        kitchen: true,
-        priceRange: [{
-            lowest: 800,
-            highest: 1000
-        }],
-        date: [{
-            start: '05/15/2023',
-            end : '09/15/2023'
-        }],
         location: 'NorthEastern',
+        housingType: 'Apartment',
+        roomType: 'Studio',
+        bathroomType: 'Individual',
+        kitchen: true,
+        age: 18,
+        priceRange: [800,1000],
+        date: ['05/15/2023', '09/15/2023'],
+        image: '',
         note: ''
       }, {
         userName: 'tWilliam',
         post: true,
         lookFor: true,
-        shareRoom: false,
-        bedroom: 3,
-        bathroom: 2,
-        kitchen: true,
-        priceRange: [{
-            lowest: 800,
-            highest: 1000
-        }],
-        date: [{
-            start: '08/15/2023',
-            end : '05/15/2024'
-        }],
         location: 'Princeton',
+        housingType: 'Apartment',
+        roomType: 'Studio',
+        bathroomType: 'Shared',
+        kitchen: true,
+        age: 18,
+        priceRange: [800,1000],
+        date: ['08/15/2023','05/15/2024'],
+        image: '',
         note: ''
       }, {
         userName: 'jritch',
         post: true,
         lookFor: false,
-        shareRoom: true,
-        bedroom: 2,
-        bathroom: 2,
-        kitchen: false,
-        priceRange: [{
-            lowest: 900,
-            highest: 11000
-        }],
-        date: [{
-            start: '05/15/2023',
-            end : '07/15/2023'
-        }],
         location: 'University of Pittsburgh',
+        housingType: 'Condo',
+        roomType: 'Shared',
+        bathroomType: 'Individual',
+        kitchen: false,
+        age: 18,
+        priceRange: [900,11000],
+        date: ['05/15/2023','07/15/2023'],
+        image: '',
         note: ''
       },
       {
         userName: 'cpavoz',
         post: true,
         lookFor: false,
-        shareRoom: false,
-        bedroom: 1,
-        bathroom: 1,
-        kitchen: false,
-        priceRange: [{
-            lowest: 800,
-            highest: 1000
-        }],
-        date: [{
-            start: '05/15/2023',
-            end : '07/15/2023'
-        }],
         location: 'University of Rhode Island',
+        housingType: 'Condo',
+        roomType: 'Studio',
+        bathroomType: 'Individual',
+        kitchen: false,
+        age: 18,
+        priceRange: [800,1000],
+        date: ['05/15/2023','07/15/2023'],
+        image: '',
         note: ''
       }, {
         userName: 'pfrancis',
         post: false,
         lookFor: false,
-        shareRoom: false,
-        bedroom: 1,
-        bathroom: 1,
-        kitchen: false,
-        priceRange: [{
-            lowest: 800,
-            highest: 1000
-        }],
-        date: [{
-            start: '05/15/2023',
-            end : '08/15/2023'
-        }],
         location: 'University of Virginia',
+        housingType: 'Condo',
+        roomType: 'Shared',
+        bathroomType: 'Shared',
+        kitchen: false,
+        age: 18,
+        priceRange: [800,1000],
+        date: ['05/15/2023','08/15/2023'],
+        image: '',
         note: ''
       }, {
         userName: 'pkeane',
         post: false,
         lookFor: true,
-        shareRoom: true,
-        bedroom: 3,
-        bathroom: 2,
-        kitchen: true,
-        priceRange: [{
-            lowest: 800,
-            highest: 1000
-        }],
-        date: [{
-            start: '08/15/2023',
-            end : '05/15/2024'
-        }],
         location: 'NY University',
+        housingType: 'Condo',
+        roomType: 'Individual',
+        bathroomType: 'Shared',
+        kitchen: true,
+        age: 18,
+        priceRange: [800,1000],
+        date: ['08/15/2023','05/15/2024'],
+        image: '',
         note: ''
       },
       {
         userName: 'rloren',
         post: true,
         lookFor: false,
-        shareRoom: false,
-        bedroom: 1,
-        bathroom: 1,
-        kitchen: false,
-        priceRange: [{
-            lowest: 800,
-            highest: 1000
-        }],
-        date: [{
-            start: '05/15/2023',
-            end : '07/15/2023'
-        }],
         location: 'University of Albany',
+        housingType: 'House',
+        roomType: 'Studio',
+        bathroomType: 'Shared',
+        kitchen: false,
+        age: 18,
+        priceRange: [800,1000],
+        date: ['05/15/2023','07/15/2023'],
+        image: '',
         note: ''
       }, {
         userName: 'cgonzales',
         post: false,
         lookFor: false,
-        shareRoom: false,
-        bedroom: 1,
-        bathroom: 3,
-        kitchen: false,
-        priceRange: [{
-            lowest: 900,
-            highest: 11000
-        }],
-        date: [{
-            start: '06/15/2023',
-            end : '07/15/2023'
-        }],
         location: 'Rutgers University',
+        housingType: 'House',
+        roomType: 'Individual',
+        bathroomType: 'Individual',
+        kitchen: false,
+        age: 18,
+        priceRange: [900,11000],
+        date: ['06/15/2023','07/15/2023'],
+        image: '',
         note: ''
       }, {
         userName: 'jgomez',
         post: false,
         lookFor: false,
-        shareRoom: true,
-        bedroom: 1,
-        bathroom: 1,
-        kitchen: true,
-        priceRange: [{
-            lowest: 800,
-            highest: 1000
-        }],
-        date: [{
-            start: '05/15/2023',
-            end : '09/15/2023'
-        }],
         location: 'University of New Jersey',
+        housingType: 'House',
+        roomType: 'Individual',
+        bathroomType: 'Individual',
+        kitchen: true,
+        age: 18,
+        priceRange: [800,1000],
+        date: ['05/15/2023','09/15/2023'],
+        image: '',
         note: ''
       },
       {
         userName: 'roconnor',
         post: false,
         lookFor: false,
-        shareRoom: true,
-        bedroom: 1,
-        bathroom: 1,
-        kitchen: false,
-        priceRange: [{
-            lowest: 1000,
-            highest: 11000
-        }],
-        date: [{
-            start: '05/15/2023',
-            end : '07/15/2023'
-        }],
         location: 'Brown University',
+        housingType: 'House',
+        roomType: 'Individual',
+        bathroomType: 'Individual',
+        kitchen: false,
+        age: 18,
+        priceRange: [1000,11000],
+        date: ['05/15/2023','07/15/2023'],
+        image: '',
         note: ''
       }, {
         userName: 'msumer',
         post: true,
         lookFor: false,
-        shareRoom: true,
-        bedroom: 1,
-        bathroom: 1,
-        kitchen: false,
-        priceRange: [{
-            lowest: 600,
-            highest: 800
-        }],
-        date: [{
-            start: '05/01/2023',
-            end : '07/15/2023'
-        }],
         location: 'University of Connecticut',
+        housingType: 'House',
+        roomType: 'Individual',
+        bathroomType: 'Individual',
+        kitchen: false,
+        age: 18,
+        priceRange: [600,800],
+        date: ['05/01/2023','07/15/2023'],
+        image: '',
         note: ''
       }, {
         userName: 'sjoseph',
         post: false,
         lookFor: false,
-        shareRoom: false,
-        bedroom: 1,
-        bathroom: 1,
-        kitchen: false,
-        priceRange: [{
-            lowest: 900,
-            highest: 12000
-        }],
-        date: [{
-            start: '05/15/2023',
-            end : '07/15/2023'
-        }],
         location: 'MIT',
+        housingType: 'House',
+        roomType: 'Individual',
+        bathroomType: 'Shared',
+        kitchen: false,
+        age: 18,
+        priceRange: [900, 12000],
+        date: ['05/15/2023', '07/15/2023'],
+        image: '',
         note: ''
       }
 ]

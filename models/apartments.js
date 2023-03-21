@@ -5,19 +5,15 @@ const ApartmentSchema = new mongoose.Schema({
     userName: String,
     post: Boolean,
     lookFor: Boolean,
-    shareRoom: Boolean,
-    bedroom: Number,
-    bathroom: Number,
-    kitchen: Boolean,
-    priceRange: [{
-        lowest: Number,
-        highest: Number
-    }],
-    date: [{
-        start: Date,
-        end : Date
-    }],
     location: String,
+    housingType: String,
+    roomType: String,
+    bathroomType: String,
+    kitchen: Boolean,
+    age: Number,
+    priceRange: [ Number, Number],
+    date: [Date, Date],
+    image: String,
     note: String
   }, { timestamps: true })
 
