@@ -182,7 +182,7 @@ const ApartmentSeed =
         bathroomType: 'Individual',
         kitchen: false,
         age: 18,
-        priceRange: [1000,11000],
+        priceRange: [1000,1100],
         date: ['05/15/2023','07/15/2023'],
         image: '',
         note: ''
@@ -210,7 +210,7 @@ const ApartmentSeed =
         bathroomType: 'Shared',
         kitchen: false,
         age: 18,
-        priceRange: [900, 12000],
+        priceRange: [900, 1200],
         date: ['05/15/2023', '07/15/2023'],
         image: '',
         note: ''
