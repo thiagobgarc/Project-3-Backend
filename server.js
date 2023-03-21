@@ -9,15 +9,20 @@ const { DATABASE_URL, PORT = 3000 } = process.env
 const express = require("express")
 // create application object
 const app = express()
-//import mongoose
+//import mongoose/connection
 const mongoose = require("mongoose")
+const db = mongoose.connection
 // import middleware
 const cors = require("cors")
 const morgan = require("morgan")
+// IMPORT BCYRPT/EXPRESS-SESSION
+const bcrypt = require('bcrypt')
+const session = require('express-session')
 
 //import models
 const Apartment = require('./models/apartments.js')
 const Roommate = require('./models/roommates.js')
+const User = require('./models/users')
 
 ///////////////////////////////
 // DATABASE CONNECTION
@@ -25,14 +30,23 @@ const Roommate = require('./models/roommates.js')
 //In .env add this to run mongodb locally
 // DATABASE_URL = 'mongodb://localhost:27017/roomiefinderz'
 
-mongoose.connect(DATABASE_URL, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  })
+db.on("open", () => console.log("Youre connected to mongoose" + DATABASE_URL))
+db.on("close", () => console.log("You are disconnected", + DATABASE_URL))
+db.on("error", (error) => console.log(error))
 
-mongoose.connection.on("open", () => console.log("Youre connected to mongoose"))
-  .on("close", () => console.log("You are disconnected"))
-  .on("error", (error) => console.log(error))
+///////////////////////////////
+// SESSIONS TO .ENV FILE
+///////////////////////////////
+app.use(session({
+  secret:process.env.SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
+
+mongoose.connect(DATABASE_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true
+})
 
 ///////////////////////////////
 // MODELS
@@ -58,17 +72,20 @@ app.use(morgan("dev"))
 app.use(express.json())
 
 ///////////////////////////////
-// Controllers Middleware
+// BCRYPT
 ////////////////////////////////
-// app.use('/sessions', sessionsController)
+const hashedString = bcrypt.hashSync('yourStringHere', bcrypt.genSaltSync(10))
+console.log(hashedString)
+console.log(bcrypt.compareSync('yourStringHere', hashedString))
+////////////////////////////////
 
 ///////////////////////////////
 // ROUTES
 ////////////////////////////////
 // create a test route
-app.get("/", (req,res) => {
-    res.send("hello world!")
-})
+// app.get("/", (req,res) => {
+//     res.send("hello world!")
+// })
 
 //////////////////////////////////////
 // LOGIN & SIGNUP ROUTES
@@ -77,7 +94,7 @@ app.get("/login", async (req,res) => {
   try{
     // GET LOGIN PAGE
     res.json(await User.find({}))
-  } catch {
+  } catch (error) {
     // SEND ERROR
     res.status(400).json(error)
   }
@@ -86,17 +103,18 @@ app.get("/login/:id", async (req,res) => {
   try {
     // LOGIN USER 
     res.json(await User.findById(req.params.id))
-  } catch {
+  } catch (error) {
     // send error
     res.status(400).json(error)
   }
 })
 
 app.post("/registration", async (req,res) => {
+  // req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
   try{
     // CREATE USER
     res.json(await User.create(req.body))
-  } catch {
+  } catch (error){
     // SEND ERROR
     res.status(400).json(error)
   }
