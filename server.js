@@ -83,9 +83,9 @@ console.log(bcrypt.compareSync('yourStringHere', hashedString))
 // ROUTES
 ////////////////////////////////
 // create a test route
-// app.get("/", (req,res) => {
-//     res.send("hello world!")
-// })
+app.get("/", (req,res) => {
+    res.send("hello world!")
+})
 
 //////////////////////////////////////
 // LOGIN & SIGNUP ROUTES
