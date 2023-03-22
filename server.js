@@ -166,7 +166,7 @@ app.get('/requestapts', async(req, res) =>{
   }
 })
 // POST - APARTMENT CREATE ROUTE
-app.post('/apartment', async (req, res) => {
+app.post('/requestapts', async (req, res) => {
   try {
     res.json(await Apartment.create(req.body))
   } catch (error){
@@ -175,17 +175,17 @@ app.post('/apartment', async (req, res) => {
   }
 })
 // PUT - APARTMENT UPDATE ROUTE
-app.put("/apartment/:id", async (req, res) => {
+app.put("/requestapts/:id", async (req, res) => {
   try {
-    res.json(await People.findByIdAndUpdate(req.params.id, req.body, {new: true}))
+    res.json(await Apartment.findByIdAndUpdate(req.params.id, req.body, {new: true}))
   } catch (error) {
     res.status(400).json(error)
   }
 })
 // DELETE - APARTMENT DELETE ROUTE
-app.delete('/apartment/:id', async (req, res) => {
+app.delete('/requestapts/:id', async (req, res) => {
   try {
-    res.json(await People.findByIdAndRemove(req.params.id))
+    res.json(await Apartment.findByIdAndRemove(req.params.id))
   } catch (error) {
     res.status(400).json(error)
   }
