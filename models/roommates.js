@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 
 // Roommate Schema
 const roommateSchema = new mongoose.Schema({
+    picture: Image,
     name: String,
     age: Number,
     gender: String,
@@ -11,6 +12,7 @@ const roommateSchema = new mongoose.Schema({
     smoker: Boolean,
     morningOrNight: String,
     roommateOrRoom: String
+  
   }, { timestamps: true })
  
  const Roommate = mongoose.model("Roommate", roommateSchema)
