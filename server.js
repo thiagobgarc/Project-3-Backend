@@ -233,7 +233,7 @@ app.get('/roommates/seed', async (req, res) => {
     // await mongoose.connection.db.dropDatabase();
     // await mongoose.connection.close();
     res.send('Database seeded successfully');
-  } catch (err) {
+  } catch (error) {
     res.status(400).send(error);
   }
 });
