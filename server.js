@@ -83,14 +83,14 @@ console.log(bcrypt.compareSync('yourStringHere', hashedString))
 // ROUTES
 ////////////////////////////////
 // create a test route
-app.get("/", (req,res) => {
-    res.send("hello world!")
-})
+// app.get("/", (req,res) => {
+//     res.send("hello world!")
+// })
 
 //////////////////////////////////////
 // LOGIN & SIGNUP ROUTES
 //////////////////////////////////////
-app.get("/login", async (req,res) => {
+app.get("/", async (req,res) => {
   try{
     // GET LOGIN PAGE
     res.json(await User.find({}))
@@ -99,7 +99,7 @@ app.get("/login", async (req,res) => {
     res.status(400).json(error)
   }
 })
-app.get("/login/:id", async (req,res) => {
+app.get("/:id", async (req,res) => {
   try {
     // LOGIN USER 
     res.json(await User.findById(req.params.id))
