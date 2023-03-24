@@ -4,7 +4,7 @@
 
 require("dotenv").config()
 // pull PORT from .env, give default value of 3000
-const { DATABASE_URL, PORT = 3000 } = process.env
+const { DATABASE_URL, PORT = 4000 } = process.env
 // import express
 const express = require("express")
 // create application object
@@ -37,11 +37,11 @@ db.on("error", (error) => console.log(error))
 ///////////////////////////////
 // SESSIONS TO .ENV FILE
 ///////////////////////////////
-app.use(session({
-  secret:process.env.SECRET,
-  resave: false,
-  saveUninitialized: false
-}))
+// app.use(session({
+//   secret:process.env.SECRET,
+//   resave: false,
+//   saveUninitialized: false
+// }))
 
 mongoose.connect(DATABASE_URL, {
   useUnifiedTopology: true,
@@ -190,11 +190,16 @@ app.delete('/requestapts/:id', async (req, res) => {
     res.status(400).json(error)
   }
 })
+
+//////////////////////////////////
+// ALL ROUTES FOR FINDING A ROOMMATE
+/////////////////////////////////
+
 //////////////////////////////////////
 // ALL ROUTES FOR ROOMMATES
 //////////////////////////////////////
 //GET - A LIST OF ALL ROOMMATES 
-app.get('/roommate', async(req, res) =>{
+app.get('/roommates', async(req, res) =>{
   try{
     res.json(await Roommate.find({}))
   }catch {
@@ -202,30 +207,43 @@ app.get('/roommate', async(req, res) =>{
     res.status(400).json(error)
   }
 })
+
 // GET - ROOMMATE SHOW
-app.get('/roommate/:id', async (req, res) => {
+app.get('/roommates/:id', async (req, res) => {
   try {
     res.json(await Roommate.findById(req.params.id))
   } catch (error) {
     res.status(400).json(error)
   }
 })
+
+// POST - ROOMMATE CREATE ROUTE
+app.post('/roommates', async (req, res) => {
+  try {
+    res.json(await Roommate.create(req.body))
+  } catch (error){
+    res.status(400).json(error)
+  }
+})
+
 // PUT - ROOMMATE UPDATE ROUTE
-app.put("/roommate/:id", async (req, res) => {
+app.put("/roommates/:id", async (req, res) => {
   try {
     res.json(await Roommate.findByIdAndUpdate(req.params.id, req.body, {new: true}))
   } catch (error) {
     res.status(400).json(error)
   }
 })
+
 // DELETE - ROOMMATE DELETE ROUTE
-app.delete('/roommate/:id', async (req, res) => {
+app.delete('/roommates/:id', async (req, res) => {
   try {
     res.json(await Roommate.findByIdAndRemove(req.params.id))
   } catch (error) {
     res.status(400).json(error)
   }
 })
+
 ///////////////////////////////
 // LISTENER
 ////////////////////////////////
