@@ -61,8 +61,8 @@ mongoose.connect(DATABASE_URL, {
 // const apartmentSeed = require('./data/apartment-seed.js')
 // Apartment.create(apartmentSeed)
 
-// const roommateSeed = require('./data/roommate-seed.js')
-// Roommate.create(roommateSeed)
+const roommateSeed = require('./data/roommate-seed.js')
+Roommate.create(roommateSeed)
 
 ///////////////////////////////
 // MIDDLEWARE
@@ -198,6 +198,7 @@ app.delete('/requestapts/:id', async (req, res) => {
 //////////////////////////////////////
 // ALL ROUTES FOR ROOMMATES
 //////////////////////////////////////
+
 //GET - A LIST OF ALL ROOMMATES 
 app.get('/roommates', async(req, res) =>{
   try{
@@ -225,6 +226,17 @@ app.post('/roommates', async (req, res) => {
     res.status(400).json(error)
   }
 })
+
+app.get('/roommates/seed', async (req, res) => {
+  try {
+    res.json(await Roommate.create(roommateSeed));
+    // await mongoose.connection.db.dropDatabase();
+    // await mongoose.connection.close();
+    res.send('Database seeded successfully');
+  } catch (err) {
+    res.status(400).send(error);
+  }
+});
 
 // PUT - ROOMMATE UPDATE ROUTE
 app.put("/roommates/:id", async (req, res) => {
