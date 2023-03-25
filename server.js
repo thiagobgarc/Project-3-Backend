@@ -4,7 +4,7 @@
 
 require("dotenv").config()
 // pull PORT from .env, give default value of 3000
-const { DATABASE_URL, PORT = 3000, APT_URL } = process.env
+const { DATABASE_URL, PORT = 4000, APT_URL } = process.env
 // import express
 const express = require("express")
 // create application object
@@ -37,11 +37,11 @@ db.on("error", (error) => console.log(error))
 ///////////////////////////////
 // SESSIONS TO .ENV FILE
 ///////////////////////////////
-app.use(session({
-  secret:process.env.SECRET,
-  resave: false,
-  saveUninitialized: false
-}))
+// app.use(session({
+//   secret:process.env.SECRET,
+//   resave: false,
+//   saveUninitialized: false
+// }))
 
 mongoose.connect(DATABASE_URL, {
   useUnifiedTopology: true,
@@ -106,14 +106,14 @@ console.log(bcrypt.compareSync('yourStringHere', hashedString))
 // ROUTES
 ////////////////////////////////
 // create a test route
-app.get("/", (req,res) => {
-    res.send("hello world!")
-})
+// app.get("/", (req,res) => {
+//     res.send("hello world!")
+// })
 
 //////////////////////////////////////
 // LOGIN & SIGNUP ROUTES
 //////////////////////////////////////
-app.get("/login", async (req,res) => {
+app.get("/", async (req,res) => {
   try{
     // GET LOGIN PAGE
     res.json(await User.find({}))
@@ -122,7 +122,7 @@ app.get("/login", async (req,res) => {
     res.status(400).json(error)
   }
 })
-app.get("/login/:id", async (req,res) => {
+app.get("/:id", async (req,res) => {
   try {
     // LOGIN USER 
     res.json(await User.findById(req.params.id))
@@ -258,11 +258,17 @@ app.delete('/apartment/view/find/:id', async (req, res) => {
   }
 })
 
+
+//////////////////////////////////
+// ALL ROUTES FOR FINDING A ROOMMATE
+/////////////////////////////////
+
 //////////////////////////////////////
 // ALL ROUTES FOR ROOMMATES
 //////////////////////////////////////
+
 //GET - A LIST OF ALL ROOMMATES 
-app.get('/roommate', async(req, res) =>{
+app.get('/roommates', async(req, res) =>{
   try{
     res.json(await Roommate.find({}))
   }catch {
@@ -270,30 +276,54 @@ app.get('/roommate', async(req, res) =>{
     res.status(400).json(error)
   }
 })
+
 // GET - ROOMMATE SHOW
-app.get('/roommate/:id', async (req, res) => {
+app.get('/roommates/:id', async (req, res) => {
   try {
     res.json(await Roommate.findById(req.params.id))
   } catch (error) {
     res.status(400).json(error)
   }
 })
+
+// POST - ROOMMATE CREATE ROUTE
+app.post('/roommates', async (req, res) => {
+  try {
+    res.json(await Roommate.create(req.body))
+  } catch (error){
+    res.status(400).json(error)
+  }
+})
+
+app.get('/roommates/seed', async (req, res) => {
+  try {
+    res.json(await Roommate.create(roommateSeed));
+    // await mongoose.connection.db.dropDatabase();
+    // await mongoose.connection.close();
+    res.send('Database seeded successfully');
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 // PUT - ROOMMATE UPDATE ROUTE
-app.put("/roommate/:id", async (req, res) => {
+app.put("/roommates/:id", async (req, res) => {
   try {
     res.json(await Roommate.findByIdAndUpdate(req.params.id, req.body, {new: true}))
   } catch (error) {
     res.status(400).json(error)
   }
 })
+
 // DELETE - ROOMMATE DELETE ROUTE
-app.delete('/roommate/:id', async (req, res) => {
+app.delete('/roommates/:id', async (req, res) => {
   try {
     res.json(await Roommate.findByIdAndRemove(req.params.id))
   } catch (error) {
     res.status(400).json(error)
   }
 })
+
 ///////////////////////////////
 // LISTENER
 ////////////////////////////////
