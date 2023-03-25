@@ -106,9 +106,6 @@ console.log(bcrypt.compareSync('yourStringHere', hashedString))
 // ROUTES
 ////////////////////////////////
 // create a test route
-// app.get("/", (req,res) => {
-//     res.send("hello world!")
-// })
 
 //////////////////////////////////////
 // LOGIN & SIGNUP ROUTES
@@ -122,7 +119,7 @@ app.get("/", async (req,res) => {
     res.status(400).json(error)
   }
 })
-app.get("/:id", async (req,res) => {
+app.get("/login/:id", async (req,res) => {
   try {
     // LOGIN USER 
     res.json(await User.findById(req.params.id))
@@ -297,10 +294,7 @@ app.post('/roommates', async (req, res) => {
 
 app.get('/roommates/seed', async (req, res) => {
   try {
-    res.json(await Roommate.create(roommateSeed));
-    // await mongoose.connection.db.dropDatabase();
-    // await mongoose.connection.close();
-    res.send('Database seeded successfully');
+    res.json(await Roommate.insertMany(roommateSeed));
   } catch (error) {
     res.status(400).send(error);
   }
