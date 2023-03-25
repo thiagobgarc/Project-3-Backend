@@ -4,7 +4,7 @@
 
 require("dotenv").config()
 // pull PORT from .env, give default value of 3000
-const { DATABASE_URL, PORT = 3000 } = process.env
+const { DATABASE_URL, PORT = 3000, APT_URL } = process.env
 // import express
 const express = require("express")
 // create application object
@@ -58,11 +58,34 @@ mongoose.connect(DATABASE_URL, {
 //////////////////////////////
 
 //Comment these lines out to run one time for seed data
-// const apartmentSeed = require('./data/apartment-seed.js')
+const apartmentSeed = require('./data/apartment-seed.js')
 // Apartment.create(apartmentSeed)
 
-// const roommateSeed = require('./data/roommate-seed.js')
+const roommateSeed = require('./data/roommate-seed.js')
 // Roommate.create(roommateSeed)
+
+//
+app.get('/apartmentSeed', async(req, res) =>{
+  console.log("i here apt")
+  try{
+    // CREATE SEED DATA FOR APARTMENTS
+    res.json(await Apartment.create(apartmentSeed))
+  } catch {
+    // SEND ERROR
+    res.status(400).json(error)
+  }
+})
+
+app.get('/roommateSeed', async(req, res) =>{
+  console.log("i here")
+  try{
+    // CREATE SEED DATA FOR ROOMATES
+    res.json(await Roommate.create(roommateSeed))
+  } catch {
+    // SEND ERROR
+    res.status(400).json(error)
+  }
+})
 
 ///////////////////////////////
 // MIDDLEWARE
@@ -137,7 +160,7 @@ app.get('/postapps', async(req, res) =>{
 /////////////////////////////////
 
 // GET - A LIST OF ALL AVAILABLE APARTMENTS
-app.get('/postapts', async(req, res) =>{
+app.get('/apartment/view/post', async(req, res) =>{
   try{
     res.json(await Apartment.find({post:true}))
   }catch {
@@ -153,11 +176,29 @@ app.get('/apartment/:id', async (req, res) => {
     res.status(400).json(error)
   }
 })
+
+// GET - APARTMENT SHOW
+app.get('/apartment/view/post/:id', async (req, res) => {
+  try {
+    res.json(await Apartment.findById(req.params.id))
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+
+app.get('/apartment/view/find/:id', async (req, res) => {
+  try {
+    res.json(await Apartment.findById(req.params.id))
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+
 //////////////////////////////////
 // ALL ROUTES FOR POSTING A ROOM
 /////////////////////////////////
 // GET - A LIST OF ALL WANTED APARTMENTS
-app.get('/requestapts', async(req, res) =>{
+app.get('/apartment/view/find', async(req, res) =>{
   try{
     res.json(await Apartment.find({post:false}))
   }catch {
@@ -165,8 +206,19 @@ app.get('/requestapts', async(req, res) =>{
     res.status(400).json(error)
   }
 })
+
+// GET - A LIST OF ALL POSTED APARTMENTS
+app.get('/apartment/view/post', async(req, res) =>{
+  try{
+    res.json(await Apartment.find({post:true}))
+  }catch {
+    // send error
+    res.status(400).json(error)
+  }
+})
+
 // POST - APARTMENT CREATE ROUTE
-app.post('/requestapts', async (req, res) => {
+app.post('/apartment/new', async (req, res) => {
   try {
     res.json(await Apartment.create(req.body))
   } catch (error){
@@ -174,8 +226,15 @@ app.post('/requestapts', async (req, res) => {
     res.status(400).json(error)
   }
 })
-// PUT - APARTMENT UPDATE ROUTE
-app.put("/requestapts/:id", async (req, res) => {
+// PUT - APARTMENT UPDATE ROUTES
+app.put("/apartment/view/find/:id", async (req, res) => {
+  try {
+    res.json(await Apartment.findByIdAndUpdate(req.params.id, req.body, {new: true}))
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+app.put("/apartment/view/post/:id", async (req, res) => {
   try {
     res.json(await Apartment.findByIdAndUpdate(req.params.id, req.body, {new: true}))
   } catch (error) {
@@ -183,13 +242,22 @@ app.put("/requestapts/:id", async (req, res) => {
   }
 })
 // DELETE - APARTMENT DELETE ROUTE
-app.delete('/requestapts/:id', async (req, res) => {
+app.delete('/apartment/view/post/:id', async (req, res) => {
   try {
     res.json(await Apartment.findByIdAndRemove(req.params.id))
   } catch (error) {
     res.status(400).json(error)
   }
 })
+
+app.delete('/apartment/view/find/:id', async (req, res) => {
+  try {
+    res.json(await Apartment.findByIdAndRemove(req.params.id))
+  } catch (error) {
+    res.status(400).json(error)
+  }
+})
+
 //////////////////////////////////////
 // ALL ROUTES FOR ROOMMATES
 //////////////////////////////////////
